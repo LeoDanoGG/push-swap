@@ -6,7 +6,7 @@
 /*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 12:56:44 by legomez           #+#    #+#             */
-/*   Updated: 2026/10/30 18:30:56 by legomez          ###   ########.fr       */
+/*   Updated: 2026/10/30 19:21:24 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,31 @@ void	dev_sort(t_arr *a, t_arr *b)
 	int	count;
 
 	count = 0;
-	k = (1.3f * aprox_sqrt(10));
-	while (a->size != 0)
+	k = (int)(1.3f * aprox_sqrt(a->count));
+
+	while (a->count != 0)
 	{
-		ft_printf("Count: %d\n", count, k);
+		ft_printf("Count: %d | K: %d\n", count, k);
 		show(a, b);
-		if (a->arr[0] <= count)
+		if (a->start <= count)
 		{
 			push(a, b);
 			rotate(b);
+			count++;
 		}
-		else if (a->arr[0] <= count + k)
-			push(b, a);
+		else if (a->start <= count + k)
+		{
+			push(a, b);
+			count++;
+		}
 		else
 			rotate(a);
-		count++;
 		sleep(1);
 	}
 }
 
-	// if (is_sorted(a) && !b->count)
-	// 	ft_printf("OK\n");
-	// else
-	// 	ft_printf("KO\n");
+// {	"one",		{42},								LEN(one)	}
+// {	"sorted",	{1, 2, 3, 4, 5},					LEN(sorted)	}
+// {	"five",		{3, 5, 1, 4, 2},					LEN(five)	}
+// {	"ten",		{7, 2, 9, 1, 5, 10, 3, 8, 6, 4},	LEN(ten)	}
+// {	"neg",		{-3, 5, 0, -10, 8, 2},				LEN(neg)	}

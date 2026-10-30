@@ -6,7 +6,7 @@
 /*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 12:56:50 by legomez           #+#    #+#             */
-/*   Updated: 2026/10/30 12:56:51 by legomez          ###   ########.fr       */
+/*   Updated: 2026/10/30 17:19:27 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	print_stacks(t_arr *a, t_arr *b);
 int		is_sorted(t_arr *a);
 int		exec_op(const char *op, t_arr *a, t_arr *b);
 int		read_line(char *buf, int max);
+void	show(t_arr *a, t_arr *b);
 
 /* dev_sort.c */
 void	dev_sort(t_arr *a, t_arr *b);

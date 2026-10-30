@@ -6,18 +6,18 @@
 /*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 13:00:17 by legomez           #+#    #+#             */
-/*   Updated: 2026/10/30 13:07:19 by legomez          ###   ########.fr       */
+/*   Updated: 2026/10/30 18:29:37 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dev.h"
 
-static void	show(t_arr *a, t_arr *b)
+void	show(t_arr *a, t_arr *b)
 {
 	if (a->size <= 30)
 		print_stacks(a, b);
 	else
-		ft_putstr_fd("(stack grande, no se imprime)\n", 1);
+		ft_printf("(stack grande, no se imprime)\n");
 }
 
 static void	interactive(t_arr *a, t_arr *b)
@@ -26,13 +26,13 @@ static void	interactive(t_arr *a, t_arr *b)
 
 	while (1)
 	{
-		ft_putstr_fd("> ", 1);
+		ft_printf("> ");
 		if (read_line(buf, 16) < 0 || !ft_strncmp(buf, "q", 2))
 			break ;
 		if (exec_op(buf, a, b))
 			show(a, b);
 		else
-			ft_putstr_fd("Commands: sa sb ss pa pb ra rb rr rra rrb rrr\n", 1);
+			ft_printf("Commands: sa sb ss pa pb ra rb rr rra rrb rrr\n");
 	}
 }
 
@@ -65,7 +65,6 @@ int	main(int argc, char **argv)
 	while (a->count < len)
 		add_back(a, data[a->count]);
 	free(data);
-	show(a, b);
 	if (i)
 		interactive(a, b);
 	else
@@ -73,9 +72,9 @@ int	main(int argc, char **argv)
 		dev_sort(a, b);
 		show(a, b);
 		if (is_sorted(a) && !b->count)
-			ft_putstr_fd("OK\n", 1);
+			ft_printf("OK\n", 1);
 		else
-			ft_putstr_fd("KO\n", 1);
+			ft_printf("KO\n", 1);
 	}
 	return (free_arr(a), free_arr(b), 0);
 }

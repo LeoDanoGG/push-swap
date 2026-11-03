@@ -6,13 +6,13 @@
 /*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/29 17:43:16 by gtomas-m          #+#    #+#             */
-/*   Updated: 2026/10/30 10:10:53 by legomez          ###   ########.fr       */
+/*   Updated: 2026/11/03 09:59:29 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//Swap the first to numbers of stack
+// Swap the first to numbers of stack
 void	swap(t_arr *arr)
 {
 	int	first_idx;
@@ -26,7 +26,7 @@ void	swap(t_arr *arr)
 	arr -> arr[second_idx] = temp;
 }
 
-//Remove the first number of src and add it into the top of dest
+// Remove the first number of src and add it into the top of dest
 void	push(t_arr *src, t_arr *dest)
 {
 	int	val;
@@ -35,7 +35,7 @@ void	push(t_arr *src, t_arr *dest)
 	add_front(dest, val);
 }
 
-//Move up all the numbers of arr making the first number last
+// Move up all the numbers of arr making the first number last
 void	rotate(t_arr *arr)
 {
 	int	val;
@@ -44,7 +44,7 @@ void	rotate(t_arr *arr)
 	add_back(arr, val);
 }
 
-//Move down all the numbers of arr making the last number first
+// Move down all the numbers of arr making the last number first
 void	reverse_rotate(t_arr *arr)
 {
 	int	val;

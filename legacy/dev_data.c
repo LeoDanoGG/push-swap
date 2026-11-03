@@ -6,7 +6,7 @@
 /*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 12:56:40 by legomez           #+#    #+#             */
-/*   Updated: 2026/10/30 19:22:02 by legomez          ###   ########.fr       */
+/*   Updated: 2026/11/03 09:43:49 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 static const int	g_one[] = {42};
 static const int	g_sorted[] = {1, 2, 3, 4, 5};
+static const int	g_reverse[] = {5, 4, 3, 2, 1};
+static const int	g_three[] = {3, 1, 2};
 static const int	g_five[] = {3, 5, 1, 4, 2};
 static const int	g_ten[] = {7, 2, 9, 1, 5, 10, 3, 8, 6, 4};
 static const int	g_neg[] = {-3, 5, 0, -10, 8, 2};
@@ -23,15 +25,20 @@ static const int	g_neg[] = {-3, 5, 0, -10, 8, 2};
 static const t_preset	g_presets[] = {
 	{"one", g_one, LEN(g_one)},
 	{"sorted", g_sorted, LEN(g_sorted)},
+	{"reverse", g_reverse, LEN(g_reverse)},
+	{"three", g_three, LEN(g_three)},
 	{"five", g_five, LEN(g_five)},
 	{"ten", g_ten, LEN(g_ten)},
-	{"neg", g_neg, LEN(g_neg)}
+	{"neg", g_neg, LEN(g_neg)},
+	{NULL, NULL, 0}
 };
 
 void	list_presets(void)
 {
 	int	i;
 
+	ft_putstr_fd("Uso: ./dev [-i] <preset | rand [N] [seed] | n1 n2 ...>\n", 1);
+	ft_putstr_fd("Presets: rand", 1);
 	i = 0;
 	while (g_presets[i].name)
 	{

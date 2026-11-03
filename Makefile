@@ -1,7 +1,8 @@
 NAME        = push_swap
 
 # SRCS_START
-SRCS        = ft_basic_operations.c ft_circular_array.c ft_circular_array_operations.c
+SRCS        = ft_basic_operations.c ft_compute_disorder.c ft_linked_list_additions.c ft_linked_list.c ft_parse_input.c \
+              ft_radix_lsd.c sort_simple.c
 # SRCS_END
 
 OBJS        = $(SRCS:.c=.o)

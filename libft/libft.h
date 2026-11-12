@@ -6,7 +6,7 @@
 /*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 11:25:23 by legomez           #+#    #+#             */
-/*   Updated: 2026/10/29 17:50:08 by legomez          ###   ########.fr       */
+/*   Updated: 2026/11/12 12:26:24 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 /* libs */
 # include "ft_printf.h"
+# include "ft_printferr.h"
+# include "get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>

@@ -1,22 +1,17 @@
 *This project has been created as part of the 42 curriculum by legomez & gtomas-m.*
 
-# Push_Swap
+# Push_swap
 
 ## Description
 
 <!-- Goal of the project, short overview and allowed external functions. -->
-
-Check program and checker with a defined variable in terminal
-```c
-ARG=$(seq -1000 1000 | sort -R | tail -n 500 | tr '\n' ' '); ./push_swap $ARG | ./checker_linux $ARG
-```
 
 ### Project Files
 
 <!-- FILES_START -->
 ```c
 ft_basic_operations.c ft_compute_disorder.c ft_linked_list_additions.c ft_linked_list.c ft_parse_input.c
-ft_radix_lsd.c sort_simple.c
+ft_quick_sort.c ft_radix_lsd.c show_stack.c
 ```
 <!-- FILES_END -->
 
@@ -41,7 +36,7 @@ ft_radix_lsd.c sort_simple.c
 
 ## Resources
 
-- [Resource name](https://example.com) - what it was used for.
+- [Circular Array](https://labuladong.online/en/algo/data-structure-basic/cycle-array/) - Visual explanations and implementations of circular Arrays.
 
 ### Use of AI
 

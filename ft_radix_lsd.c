@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_radix_lsd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 10:05:24 by gtomas-m          #+#    #+#             */
-/*   Updated: 2026/11/03 16:01:57 by legomez          ###   ########.fr       */
+/*   Updated: 2026/11/10 17:55:56 by gtomas-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_radix_lsd(t_stack *a, t_stack *b)
 
 	max = max_idx(a);
 	idx = 0;
+	if (compute_disorder(a) == 0)
+		return ;
 	while (idx < max)
 	{
 		size = a->size;
@@ -53,13 +55,13 @@ void	ft_radix_lsd(t_stack *a, t_stack *b)
 		while (i < size)
 		{
 			if (get_bit_at(a->head->norm_val, idx) == 1)
-				rotate(a);
+				ra(a);
 			else
-				push(a, b);
+				pb(b, a);
 			i++;
 		}
 		while (b->size > 0)
-			push(b, a);
+			pa(a, b);
 		idx++;
 	}
 }

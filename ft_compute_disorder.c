@@ -6,7 +6,7 @@
 /*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 09:53:05 by gtomas-m          #+#    #+#             */
-/*   Updated: 2026/11/03 12:46:33 by gtomas-m         ###   ########.fr       */
+/*   Updated: 2026/11/10 17:55:58 by gtomas-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	compute_disorder(t_stack *a)
 	i = 0;
 	mistakes = 0;
 	total_pairs = 0;
+	if (a->size < 2)
+		return (0);
 	while (i < a->size)
 	{
 		j = i +1;

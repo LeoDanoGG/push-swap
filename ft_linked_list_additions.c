@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_linked_list_additions.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 12:40:42 by gtomas-m          #+#    #+#             */
-/*   Updated: 2026/11/03 12:52:18 by gtomas-m         ###   ########.fr       */
+/*   Updated: 2026/11/04 12:25:44 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ t_node	*ft_node_at(t_stack *stack, int idx)
 	i = 0;
 	curr = stack->head;
 	while (curr->next && i < idx)
+	{
 		curr = curr->next;
+		i ++;
+	}
 	return (curr);
 }

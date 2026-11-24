@@ -1,14 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_simple_aux.c                                  :+:      :+:    :+:   */
+/*   ft_stack_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/03 11:36:56 by legomez           #+#    #+#             */
-/*   Updated: 2026/11/12 14:46:24 by legomez          ###   ########.fr       */
+/*   Created: 2026/11/12 12:45:29 by gtomas-m          #+#    #+#             */
+/*   Updated: 2026/11/19 14:01:11 by gtomas-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+//Simple error and free
+int	error(t_stack *a, t_stack *b)
+{
+	ft_stack_clear(a);
+	ft_stack_clear(b);
+	ft_printferr("Error\n");
+	return (-1);
+}

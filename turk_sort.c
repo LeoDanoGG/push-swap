@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_simple.c                                      :+:      :+:    :+:   */
+/*   turk_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 11:36:56 by legomez           #+#    #+#             */
-/*   Updated: 2026/11/12 14:36:01 by legomez          ###   ########.fr       */
+/*   Updated: 2026/11/19 14:02:23 by gtomas-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	find_max_idx(t_stack *b)
+int	signed_cost(int size, int idx)
+{
+	if (idx <= size / 2)
+		return (idx);
+	return ((size - idx) * -1);
+}
+
+int	find_max_idx(t_stack *s)
 {
 	t_node	*curr;
 	int		pos;
@@ -21,8 +28,8 @@ static int	find_max_idx(t_stack *b)
 
 	pos = 0;
 	best_idx = 0;
-	best_val = b->head->norm_val;
-	curr = b->head;
+	best_val = s->head->norm_val;
+	curr = s->head;
 	while (curr)
 	{
 		if (curr->norm_val > best_val)
@@ -36,7 +43,7 @@ static int	find_max_idx(t_stack *b)
 	return (best_idx);
 }
 
-static int	find_insert_idx(t_stack *b, int val)
+int	find_insert_idx(t_stack *b, int val)
 {
 	t_node	*prev;
 	t_node	*curr;
@@ -58,7 +65,7 @@ static int	find_insert_idx(t_stack *b, int val)
 	return (find_max_idx(b));
 }
 
-static void	bring_to_top(t_stack *b, int idx)
+void	bring_to_top(t_stack *b, int idx)
 {
 	int	pos;
 
@@ -81,22 +88,22 @@ static void	bring_to_top(t_stack *b, int idx)
 	}
 }
 
-void	ft_insertion_sort(t_stack *a, t_stack *b)
+//Set desired idx of b to the top by efficient rotations
+void	ft_turk_sort(t_stack *a, t_stack *b)
 {
-	int	idx;
+	t_cost	c;
 
-	idx = 0;
-	if (a->size < 2)
+	if (compute_disorder(a) == 0 || a->size < 2)
 		return ;
 	while (a->size > 0)
 	{
-		idx = find_insert_idx(b, a->head->norm_val);
-		bring_to_top(b, idx);
+		c = find_cheapest(a, b);
+		rotate_both(a, b, &c);
+		rotate_a(a, c.ca);
+		rotate_b(b, c.cb);
 		pb(b, a);
 	}
 	bring_to_top(b, find_max_idx(b));
 	while (b->size > 0)
 		pa(a, b);
 }
-
-//  shuf -i 0-99 -n 500 > args.txt && ccflags *.c */*.c && ./a.out --simple $(cat args.txt) | wc -l >> result.txt

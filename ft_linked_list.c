@@ -6,12 +6,13 @@
 /*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 10:08:05 by gtomas-m          #+#    #+#             */
-/*   Updated: 2026/11/03 12:41:09 by gtomas-m         ###   ########.fr       */
+/*   Updated: 2026/11/19 13:59:45 by gtomas-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+//Create a new node
 t_node	*ft_nodenew(int val, int norm)
 {
 	t_node	*node;
@@ -25,6 +26,7 @@ t_node	*ft_nodenew(int val, int norm)
 	return (node);
 }
 
+//Add a node at the end of stack
 void	ft_node_addback(t_stack *stack, t_node *new)
 {
 	t_node	*last;
@@ -39,6 +41,7 @@ void	ft_node_addback(t_stack *stack, t_node *new)
 	stack->size++;
 }
 
+//Add a node at the front of stack
 void	ft_node_addfront(t_stack *stack, t_node *new)
 {
 	if (!stack || !new)
@@ -48,6 +51,7 @@ void	ft_node_addfront(t_stack *stack, t_node *new)
 	stack->size++;
 }
 
+//Return the last node of stack
 t_node	*ft_node_last(t_stack *stack)
 {
 	t_node	*head;

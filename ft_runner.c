@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_runner.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 12:49:26 by gtomas-m          #+#    #+#             */
-/*   Updated: 2026/11/12 11:19:45 by legomez          ###   ########.fr       */
+/*   Updated: 2026/11/19 14:01:06 by gtomas-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	adaptative(t_stack *a, t_stack *b);
 
+//Return the total amount of ops done
 static size_t	total_ops(t_stack *a, t_stack *b)
 {
 	int		i;
@@ -30,16 +31,25 @@ static size_t	total_ops(t_stack *a, t_stack *b)
 	return (total);
 }
 
-static void	bench(t_stack *a, t_stack *b)
+//Print the bench mode result
+void	bench(int mode, int disorder, t_stack *a, t_stack *b)
 {
-	int			disorder;
-	int			mode;
 	const char	symbols[3][20] = {"O(n²)", "O(n√n)", "O(n log n)"};
+	const char	complx[4][20] = {"Adaptative", "Simple", "Medium", "Complex"};
+	int			symbol;
 
-	disorder = compute_disorder(a);
-	mode = adaptative(a, b);
+	symbol = mode -1;
+	if (mode == 0)
+	{
+		if (disorder >= 2000 && disorder < 5000)
+			symbol = 1;
+		else if (disorder >= 5000)
+			symbol = 2;
+		else
+			symbol = 0;
+	}
 	ft_printferr("[bench] disorder: %d.%d%%\n", disorder / 100, disorder % 100);
-	ft_printferr("[bench] strategy: Adaptative / %s\n", symbols[mode -1]);
+	ft_printferr("[bench] strategy: %s / %s\n", complx[mode], symbols[symbol]);
 	ft_printferr("[bench] total_ops: %d\n", total_ops(a, b));
 	ft_printferr("[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n",
 		a->ops[0], b->ops[0], a->ops[4], a->ops[1], a->ops[1]);
@@ -47,23 +57,21 @@ static void	bench(t_stack *a, t_stack *b)
 		a->ops[2], b->ops[2], a->ops[5], a->ops[3], b->ops[3], a->ops[6]);
 }
 
+//Execute the algorithms based on mode
 int	run_mode(int mode, t_stack *a, t_stack *b)
 {
-	if (mode == 0)
-		return (ft_radix_lsd(a, b), 3);
+	if (a->size < 16)
+		return (small_sort(a, b), mode);
 	if (mode == 1)
-		return (ft_insertion_sort(a, b), 1);
+		return (ft_turk_sort(a, b), 1);
 	if (mode == 2)
-		return (2);	//Medium algorithm
+		return (ft_range_sort(a, b), 2);
 	if (mode == 3)
 		return (ft_radix_lsd(a, b), 3);
-	if (mode == 4)
-		return (adaptative(a, b));
-	if (mode == 5)
-		bench(a, b);
-	return (-1);
+	return (adaptative(a, b), 0);
 }
 
+//Get the mode if adaptative
 static int	adaptative(t_stack *a, t_stack *b)
 {
 	int	disorder;

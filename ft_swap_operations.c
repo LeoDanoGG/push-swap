@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_basic_operations_wrapper2.c                     :+:      :+:    :+:   */
+/*   ft_swap_operations.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/05 11:28:55 by gtomas-m          #+#    #+#             */
-/*   Updated: 2026/11/10 16:16:04 by gtomas-m         ###   ########.fr       */
+/*   Created: 2026/10/29 17:43:16 by gtomas-m          #+#    #+#             */
+/*   Updated: 2026/11/19 12:03:07 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rb(t_stack *b)
+void	sa(t_stack *a)
 {
-	rotate(b);
-	b->ops[2]++;
-	print_str("rb\n");
+	swap(a);
+	a->ops[0]++;
+	print_str("sa\n");
 }
 
-void	rra(t_stack *a)
+void	sb(t_stack *b)
 {
-	reverse_rotate(a);
-	a->ops[3]++;
-	print_str("rra\n");
-}
-
-void	rrb(t_stack *b)
-{
-	reverse_rotate(b);
-	b->ops[3]++;
-	print_str("rrb\n");
+	swap(b);
+	b->ops[0]++;
+	print_str("sb\n");
 }
 
 void	ss(t_stack *a, t_stack *b)
@@ -41,10 +34,17 @@ void	ss(t_stack *a, t_stack *b)
 	print_str("ss\n");
 }
 
-void	rr(t_stack *a, t_stack *b)
+//Swap the first to nodes of stack
+void	swap(t_stack *stack)
 {
-	rotate(a);
-	rotate(b);
-	a->ops[5]++;
-	print_str("rr\n");
+	t_node	*a;
+	t_node	*b;
+
+	if (!stack || stack->size < 2)
+		return ;
+	a = stack->head;
+	b = a->next;
+	a->next = b->next;
+	b->next = a;
+	stack->head = b;
 }

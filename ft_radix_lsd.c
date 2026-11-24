@@ -6,12 +6,13 @@
 /*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 10:05:24 by gtomas-m          #+#    #+#             */
-/*   Updated: 2026/11/10 17:55:56 by gtomas-m         ###   ########.fr       */
+/*   Updated: 2026/11/19 14:00:42 by gtomas-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+//Return the max number of bits on the stack
 int	max_idx(t_stack *a)
 {
 	int		current_largest;
@@ -32,11 +33,13 @@ int	max_idx(t_stack *a)
 	return (max);
 }
 
+//Return if the bit at idx is 0 or 1
 int	get_bit_at(int num, int idx)
 {
 	return ((num >> idx) & 1);
 }
 
+//Radix sort the stack
 void	ft_radix_lsd(t_stack *a, t_stack *b)
 {
 	int	max;

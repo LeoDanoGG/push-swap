@@ -6,7 +6,7 @@
 /*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:36 by legomez           #+#    #+#             */
-/*   Updated: 2026/10/19 15:22:20 by legomez          ###   ########.fr       */
+/*   Updated: 2026/11/24 10:00:58 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*get_next_line(int fd);
 char	*take_bytes(int fd);
 char	*fill_stack(int fd, char *stack);
 char	*build_line(char *stack);
-char	*save_stack(char *stack);
 
 /* GNL utils */
 size_t	ft_strlen(const char *str);
@@ -33,7 +32,7 @@ void	*ft_calloc(size_t num, size_t size);
 
 /* BUFFER_SIZE */
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
+#  define BUFFER_SIZE 1
 # endif
 
 #endif

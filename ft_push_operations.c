@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_basic_operations_wrapper1.c                     :+:      :+:    :+:   */
+/*   ft_push_operations.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 11:28:55 by gtomas-m          #+#    #+#             */
-/*   Updated: 2026/11/10 16:15:46 by gtomas-m         ###   ########.fr       */
+/*   Updated: 2026/11/18 11:55:14 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	sa(t_stack *a)
-{
-	swap(a);
-	a->ops[0]++;
-	print_str("sa\n");
-}
-
-void	sb(t_stack *b)
-{
-	swap(b);
-	b->ops[0]++;
-	print_str("sb\n");
-}
 
 void	pa(t_stack *a, t_stack *b)
 {
@@ -40,9 +26,17 @@ void	pb(t_stack *b, t_stack *a)
 	print_str("pb\n");
 }
 
-void	ra(t_stack *a)
+//Remove the first number of src and add it into the top of dest
+void	push(t_stack *src, t_stack *dest)
 {
-	rotate(a);
-	a->ops[2]++;
-	print_str("ra\n");
+	t_node	*src_head;
+
+	if (!src || src->size < 1)
+		return ;
+	src_head = src->head;
+	src->head = src->head->next;
+	src_head->next = dest->head;
+	dest->head = src_head;
+	dest->size ++;
+	src->size --;
 }

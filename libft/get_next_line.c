@@ -6,7 +6,7 @@
 /*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:49:55 by legomez           #+#    #+#             */
-/*   Updated: 2026/10/19 14:01:01 by legomez          ###   ########.fr       */
+/*   Updated: 2026/11/18 15:47:29 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,6 @@ char	*build_line(char *stack)
 	return (ft_substr(stack, 0, len));
 }
 
-char	*save_stack(char *stack)
-{
-	char	*new_stack;
-	char	*ptr;
-
-	ptr = ft_strchr(stack, '\n');
-	if (!ptr)
-	{
-		free(stack);
-		return (NULL);
-	}
-	new_stack = ft_substr((ptr + 1), 0, ft_strlen(ptr) + 1);
-	free(stack);
-	return (new_stack);
-}
-
 char	*fill_stack(int fd, char *stack)
 {
 	char	*buff;
@@ -80,17 +64,14 @@ char	*fill_stack(int fd, char *stack)
 
 char	*get_next_line(int fd)
 {
-	static char	*stack;
-	char		*line;
+	char	*stack;
+	char	*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	stack = ft_calloc(1, sizeof(char *));
 	if (!stack)
-	{
-		stack = ft_calloc(1, sizeof(char *));
-		if (!stack)
-			return (NULL);
-	}
+		return (NULL);
 	stack = fill_stack(fd, stack);
 	if (!stack || !stack[0])
 	{
@@ -99,6 +80,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	line = build_line(stack);
-	stack = save_stack(stack);
+	free(stack);
 	return (line);
 }

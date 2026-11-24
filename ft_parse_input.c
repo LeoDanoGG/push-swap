@@ -6,7 +6,7 @@
 /*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 12:33:33 by gtomas-m          #+#    #+#             */
-/*   Updated: 2026/11/10 17:55:57 by gtomas-m         ###   ########.fr       */
+/*   Updated: 2026/11/19 14:00:43 by gtomas-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,30 @@ static int	has_dups(t_stack *stack)
 // Check if string has only digits
 static int	only_digits(char *s)
 {
-	int	i;
+	int		i;
+	long	n;
+	int		sign;
 
 	i = 0;
+	sign = 1;
+	n = 0;
 	if ((s[0] == '-' || s[0] == '+') && ft_strlen(s) > 1)
+	{
+		if (s[0] == '-')
+			sign = -1;
 		i++;
+	}
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]))
 			return (0);
+		n = (n * 10) + (s[i] - '0');
 		i++;
 	}
-	return (1);
+	n *= sign;
+	if (n <= INT_MAX && n >= INT_MIN)
+		return (1);
+	return (0);
 }
 
 // Free Splitted and stack
@@ -57,7 +69,6 @@ static int	free_all(char **splitted, t_stack *stack)
 
 	i = 0;
 	ft_stack_clear(stack);
-	free(stack);
 	if (!splitted)
 		return (0);
 	while (splitted[i])
@@ -69,6 +80,7 @@ static int	free_all(char **splitted, t_stack *stack)
 	return (0);
 }
 
+//Add the number to the stack, if any errors free and return 
 static int	add_if_valid(char **splitted, t_stack *stack)
 {
 	t_node	*new;
@@ -112,7 +124,7 @@ t_stack	*valid_input(int argc, char **argv)
 	{
 		splitted = ft_split(argv[i], ' ');
 		if (!splitted)
-			return (ft_stack_clear(stack), free(stack), NULL);
+			return (ft_stack_clear(stack), NULL);
 		if (!add_if_valid(splitted, stack))
 			return (NULL);
 		i++;

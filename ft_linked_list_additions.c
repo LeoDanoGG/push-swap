@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_linked_list_additions.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 12:40:42 by gtomas-m          #+#    #+#             */
-/*   Updated: 2026/11/04 12:25:44 by legomez          ###   ########.fr       */
+/*   Updated: 2026/11/19 13:59:30 by gtomas-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+//Free stack list and itself
 void	ft_stack_clear(t_stack *stack)
 {
 	t_node	*current;
@@ -28,8 +29,10 @@ void	ft_stack_clear(t_stack *stack)
 	}
 	stack->size = 0;
 	stack->head = NULL;
+	free(stack);
 }
 
+//Initialize the stack norm_val by rank
 void	ft_stack_normailze(t_stack *stack)
 {
 	t_node	*curr;
@@ -52,6 +55,7 @@ void	ft_stack_normailze(t_stack *stack)
 	}
 }
 
+//Return the node at idx in an stack
 t_node	*ft_node_at(t_stack *stack, int idx)
 {
 	t_node	*curr;

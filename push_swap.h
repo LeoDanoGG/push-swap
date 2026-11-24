@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 10:09:53 by legomez           #+#    #+#             */
-/*   Updated: 2026/11/10 17:56:55 by gtomas-m         ###   ########.fr       */
+/*   Updated: 2026/11/19 09:27:38 by legomez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 # include "libft/libft.h"
 
-/*Linked List*/
-
+/* Linked List */
 typedef struct s_node
 {
 	int				val;
@@ -43,17 +43,14 @@ void	ft_node_delone(t_node *node);
 void	ft_stack_normailze(t_stack *stack);
 t_node	*ft_node_at(t_stack *stack, int idx);
 
-/* Prints the stack values*/
-void	show_stack(t_stack *stack, char name);
-
-/* Basic Operations */
+/* Basic operations */
 void	swap(t_stack *stack);
 void	push(t_stack *src, t_stack *dest);
 void	rotate(t_stack *stack);
 void	reverse_rotate(t_stack *stack);
 int		compute_disorder(t_stack *stack);
 
-/* Basic Operations Wrapper*/
+/* Basic operations wrapper*/
 void	sa(t_stack *a);
 void	sb(t_stack *b);
 void	pa(t_stack *a, t_stack *b);
@@ -69,13 +66,39 @@ void	rrr(t_stack *a, t_stack *b);
 /* Parse input */
 t_stack	*valid_input(int argc, char **argv);
 
-/*Runner*/
+/* Runner */
 int		run_mode(int mode, t_stack *a, t_stack *b);
+
+/* Error */
+int		error(t_stack *a, t_stack *b);
+void	bench(int mode, int disorder, t_stack *a, t_stack *b);
+
+/* Sort for a small amount of numbers */
+void	small_sort(t_stack *a, t_stack *b);
 
 /* Algorithms */
 void	ft_radix_lsd(t_stack *a, t_stack *b);
-void	ft_insertion_sort(t_stack *stack_a, t_stack *stack_b);
+void	ft_turk_sort(t_stack *a, t_stack *b);
+void	ft_range_sort(t_stack *a, t_stack *b);
 
-/* Checks the order of the stack */
-void	check_order(t_stack *stack_a, t_stack *stack_b);
+/* Cost for a and b */
+typedef struct s_cost
+{
+	int	ca;
+	int	cb;
+}	t_cost;
+
+/* Turk and range sort utils */
+int		signed_cost(int size, int idx);
+int		find_max_idx(t_stack *s);
+int		find_insert_idx(t_stack *b, int val);
+t_cost	find_cheapest(t_stack *a, t_stack *b);
+void	bring_to_top(t_stack *b, int idx);
+void	rotate_both(t_stack *a, t_stack *b, t_cost *c);
+void	rotate_a(t_stack *a, int ca);
+void	rotate_b(t_stack *b, int cb);
+
+/* Parser for checker (bonus) */
+char	*checker_parse(char *op);
+
 #endif

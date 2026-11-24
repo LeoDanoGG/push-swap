@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: legomez <legomez@student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: gtomas-m <gtomas-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/30 11:01:11 by legomez           #+#    #+#             */
-/*   Updated: 2026/10/05 15:24:09 by legomez          ###   ########.fr       */
+/*   Updated: 2026/11/10 15:39:55 by gtomas-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ char	**ft_split(char const *s, char c)
 	char	**matrix;
 	size_t	words;
 
+	if (!s)
+		return (NULL);
 	words = count_words(s, c);
 	matrix = ft_calloc((words + 1), sizeof(char *));
 	if (!matrix)
